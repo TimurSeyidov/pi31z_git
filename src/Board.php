@@ -2,6 +2,7 @@
 require_once('color.php');
 require_once('IFigure.php');
 require_once('Pawn.php');
+require_once('Rook.php');
 
 class Board {
     private Color $player = Color::White;
@@ -22,6 +23,17 @@ class Board {
                     $col,
                     new Pawn(
                         $row === 6 ? Color::White : Color::Black
+                    )
+                );
+            }
+        }
+        foreach ([0, 7] as $row) {
+            foreach ([0, 7] as $col) {
+                $this->setItem(
+                    $row,
+                    $col,
+                    new Rook(
+                        $row === 7 ? Color::White : Color::Black
                     )
                 );
             }
