@@ -107,7 +107,9 @@ class Board {
         if ($this->getPlayer() !== $item->getColor()) {
             throw new Exception('Сейчас не ваш ход');
         }
-        # проверить есть ли в пункте назначения фигура
+        if ($from_col == $to_col && $from_row == $to_row) {
+            throw new Exception('Мы топчимся на месте');
+        }
         $opponent = $this->getItem($to_row, $to_col);
         if (!$opponent) {
             if (!$item->canMove($from_row, $from_col, $to_row, $to_col, $this)) {
