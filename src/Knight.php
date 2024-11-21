@@ -3,7 +3,7 @@
 require_once('IFigure.php');
 
 class Knight extends Figure {
-    protected string $icon = 'K';
+    protected array $icon = ["\u{265E}", "\u{2658}"];
 
     public function canMove(int $from_row, int $from_col, int $to_row, int $to_col, Board $board): bool {
         $diff_row = abs($from_row - $to_row);

@@ -19,13 +19,17 @@ class Board {
         }
         foreach ([6, 1] as $row) {
             for ($col = 0; $col < 8; $col += 1) {
-                $this->setItem(
-                    $row,
-                    $col,
-                    new Pawn(
-                        $row === 1 ? Color::White : Color::Black
-                    )
-                );
+                try {
+                    $this->setItem(
+                        $row,
+                        $col,
+                        new Pawn(
+                            $row === 1 ? Color::White : Color::Black
+                        )
+                    );
+                } catch(Exception $e){
+                    print_r([$row, $col]);
+                }
             }
         }
         foreach ([7, 0] as $row) {
@@ -71,7 +75,7 @@ class Board {
         $line = implode('', [
             '   ',
             '+',
-            str_repeat('----+', 8),
+            str_repeat('---+', 8),
         ]) . PHP_EOL;
         echo $line;
         for ($i = 7; $i >= 0; $i -= 1) {
@@ -83,7 +87,7 @@ class Board {
                 if ($item) {
                     echo $item->getIcon();
                 } else {
-                    echo '  ';
+                    echo ' ';
                 }
                 echo ' |';
             }
@@ -92,7 +96,7 @@ class Board {
         }
         echo '   ';
         for ($i = 0; $i < 8; $i += 1) {
-            echo '   ';
+            echo '  ';
             echo chr(ord('A') + $i);
             echo ' ';
         }

@@ -5,8 +5,7 @@ require_once('IFigure.php');
 require_once('Board.php');
 
 class Pawn extends Figure {
-    protected string $icon = 'P';
-
+    protected array $icon = ["\u{265F}", "\u{2659}"];
     public function canMove(int $from_row, int $from_col, int $to_row, int $to_col, Board $board): bool {
         $direction = $this->getColor() === Color::White ? 1 : -1;
         if ($from_col !== $to_col) {
